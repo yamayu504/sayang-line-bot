@@ -3,14 +3,6 @@ require 'line/bot'  #gem 'line-bot-api'の利用
 class WebhookController < ApplicationController
   protect_from_forgery :except => [:callback] #CSRF対策無効
 
-
-  def client
-   @client ||= Line::Bot::Client.new {|config|
-	config.channel_secret = ENV["085c6531912a544ac62338c8c5a88285"]
-	config.channel_token  = ENV["qWSAno3Y+jZmXKyRWJsTxiuX1JNonuGoCgBRbFnpC1YZxrvrnN5IXOzA1pgpBEMSzvvst7bRFeWVSGdSOMiKlVG+klvr2NeGpi2Kbxi6NbCH5fYURcWh6xQuWjrruffQ5wBQTq/kFR079axxRzhPewdB04t89/1O/w1cDnyilFU="]
-	}
-  end
-
   def callback
     body = request.body.read
 
@@ -35,4 +27,13 @@ class WebhookController < ApplicationController
 
    head :ok
   end
+  private 
+
+  def client
+   @client ||= Line::Bot::Client.new {|config|
+	config.channel_secret = ENV["085c6531912a544ac62338c8c5a88285"]
+	config.channel_token  = ENV["qWSAno3Y+jZmXKyRWJsTxiuX1JNonuGoCgBRbFnpC1YZxrvrnN5IXOzA1pgpBEMSzvvst7bRFeWVSGdSOMiKlVG+klvr2NeGpi2Kbxi6NbCH5fYURcWh6xQuWjrruffQ5wBQTq/kFR079axxRzhPewdB04t89/1O/w1cDnyilFU="]
+   }
+  end
+
 end
