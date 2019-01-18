@@ -1,6 +1,7 @@
 class WebhookController < ApplicationController
-  require 'line/bot' #gem 'line-bot-api'の利用
-  protect_from_forgery :except => [:callback] #CSRF対策無効
+  require 'line/bot'  #gem 'line-bot-api'の利用
+  require  'sinatora' #gem  'sinatora'
+  #protect_from_forgery :except => [:callback] #CSRF対策無効
 
 
   def client
@@ -27,7 +28,7 @@ class WebhookController < ApplicationController
 	case event.type
 	when Line::Bot::Event::MessageType::Text
 	  message = {type: 'text',text: event.message['text']}
-	  #client.reply_message(event['replyToken'], message)
+	  client.reply_message(event['replyToken'], message)
         end
       end
     }

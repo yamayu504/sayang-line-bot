@@ -66,7 +66,7 @@ gem 'dotenv-rails'
 gem 'faraday'
 gem 'faraday_middleware'
 gem 'line-bot-api'
-
+gem 'sinatra' 
 group :production do
   gem 'rails_12factor'
   gem 'pg'
