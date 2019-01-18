@@ -1,6 +1,6 @@
 class WebhookController < ApplicationController
   require 'line/bot'  #gem 'line-bot-api'の利用
-  #protect_from_forgery :except => [:callback] #CSRF対策無効
+  protect_from_forgery :except => [:callback] #CSRF対策無効
 
 
   def client
@@ -16,7 +16,9 @@ class WebhookController < ApplicationController
     signature = request.env['HTTP_X_LINE_SIGNATURE']
 
     unless client.validate_signature(body, signature)
-     error 400 do 'Bad Request' end
+     error 400 do
+      'Bad Request'
+     end
     end
 
     events = client.parse_events_from(body)
