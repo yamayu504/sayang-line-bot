@@ -1,6 +1,5 @@
 class WebhookController < ApplicationController
   require 'line/bot'  #gem 'line-bot-api'の利用
-  require  'sinatora' #gem  'sinatora'
   #protect_from_forgery :except => [:callback] #CSRF対策無効
 
 
