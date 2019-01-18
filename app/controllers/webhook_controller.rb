@@ -22,9 +22,9 @@ class WebhookController < ApplicationController
       case event
       when Line::Bot::Event::Message
 	case event.type
-	when Line::Bot::Event::messageType::text
+	when Line::Bot::Event::MessageType::Text
 	  message = {
-	    type: 'text'
+	    type: 'text',
 	    text: event.message['text'] 
 	  }
 	  client.reply_message(event['replyToken'], message)
