@@ -1,4 +1,4 @@
-class LinebotController < ApplicationController
+class WebhookController < ApplicationController
   require 'line/bot'  # gem 'line-bot-api'
 
   # callbackアクションのCSRFトークン認証を無効
