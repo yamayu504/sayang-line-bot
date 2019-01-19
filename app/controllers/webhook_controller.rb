@@ -29,7 +29,7 @@ class WebhookController < ApplicationController
           message = {
             type:               'image',
 	    originalContentUrl: "https://dl.dropboxusercontent.com/s/fismgmzaflg441s/20190119-105616.jpg",
-	    previewImageUrl:    "https://example.com/preview.jpg"
+	    previewImageUrl:    "https://dl.dropboxusercontent.com/s/fismgmzaflg441s/20190119-105616.jpg"
           }
           client.reply_message(event['replyToken'], message)
         end
