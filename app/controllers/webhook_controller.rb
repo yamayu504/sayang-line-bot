@@ -5,9 +5,9 @@ class LinebotController < ApplicationController
   protect_from_forgery :except => [:callback]
 
   def client
-    @client ||= Line::Bot::Client.new { |config|
-      config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
-      config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
+    @client = Line::Bot::Client.new { |config|
+      config.channel_secret = "085c6531912a544ac62338c8c5a88285"
+      config.channel_token  = "qWSAno3Y+jZmXKyRWJsTxiuX1JNonuGoCgBRbFnpC1YZxrvrnN5IXOzA1pgpBEMSzvvst7bRFeWVSGdSOMiKlVG+klvr2NeGpi2Kbxi6NbCH5fYURcWh6xQuWjrruffQ5wBQTq/kFR079axxRzhPewdB04t89/1O/w1cDnyilFU="
     }
   end
 
@@ -16,7 +16,7 @@ class LinebotController < ApplicationController
 
     signature = request.env['HTTP_X_LINE_SIGNATURE']
     unless client.validate_signature(body, signature)
-      error 400 do 'Bad Request' end
+      head :bad_request
     end
 
     events = client.parse_events_from(body)
