@@ -27,8 +27,9 @@ class WebhookController < ApplicationController
         case event.type
         when Line::Bot::Event::MessageType::Text
           message = {
-            type: 'text',
-            text: event.message['text']
+            type:               'image',
+	    originalContentUrl: "https://dl.dropboxusercontent.com/s/fismgmzaflg441s/20190119-105616.jpg",
+	    previewImageUrl:    "https://example.com/preview.jpg"
           }
           client.reply_message(event['replyToken'], message)
         end
