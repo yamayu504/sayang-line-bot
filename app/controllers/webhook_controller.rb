@@ -8,7 +8,7 @@ def current_date
   return date
 end
 
-def get_s3_image
+def get_s3_image(url)
   bucket = Aws::S3::Resource.new(
                               :region => 'ap-northeast-1',
                               :access_key_id => ENV["AWS_ACCESS_KEY_ID"],
@@ -36,7 +36,7 @@ end
 
   def callback
     body = request.body.read
-
+    url  = ""
     signature = request.env['HTTP_X_LINE_SIGNATURE']
     unless client.validate_signature(body, signature)
       head :bad_request
@@ -51,8 +51,8 @@ end
         when Line::Bot::Event::MessageType::Text
           message = {
             type:               'image',
-	    originalContentUrl: get_s3_image,
-	    previewImageUrl:    get_s3_image
+	    originalContentUrl: get_s3_image(url),
+	    previewImageUrl:    get_s3_image(url)
           }
           client.reply_message(event['replyToken'], message)
         end
