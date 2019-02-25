@@ -18,7 +18,7 @@ def get_s3_image
   bucket.objects.each do |obj|
     if obj.last_modified >= current_date
        obj.last_modified
-       url = "https://s3-ap-northeast-1.amazonaws.com/sayang-image/#{obj.key}"
+       url = "https://s3-ap-northeast-1.amazonaws.com/sayang-images/#{obj.key}"
     end
   end
   return url
